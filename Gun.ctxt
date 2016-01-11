@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.params=xpos\ ypos\ delZ\ w\ h\ dW\ dH
+comment0.target=Gun(double,\ double,\ double,\ int,\ int,\ int,\ int)
+comment1.params=
+comment1.target=void\ moveLeft()
+comment2.params=
+comment2.target=void\ moveRight()
+comment3.params=g
+comment3.target=void\ paint(java.awt.Graphics)
+numComments=4

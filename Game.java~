@@ -1,0 +1,134 @@
+import java.awt.Frame;
+import java.awt.*;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowAdapter;
+
+
+
+public class Game extends Frame {
+
+// instance variables: list of all Asteroids, list of all Missiles, gun, etc.
+    // ... instance variable declarations will go here
+
+
+// constant values that govern game appearance & behavior
+    private final int GAME_X_POSITION = 100;                    // screen position of ...
+    private final int GAME_Y_POSITION = 100;                    //    upper left corner of game window
+    private final String GAME_TITLE = "Asteroids Video Game";   // title of game window
+    private final int GAME_WIDTH = 600;                         // game width in pixels
+    private final int GAME_HEIGHT = 400;                        // game height in pixels
+    private final Color COLOR_BACKGROUND = Color.WHITE;         // color of the sky
+    private final int PAUSE_TIME = 50;                          // milliseconds between re-paints
+    private final Image image = Toolkit.getDefaultToolkit().getImage("asteroid.png");  
+
+    public static void main(String[] args) {
+        Game gameObject = new Game();
+        gameObject.runGame();
+    }
+
+    
+    public Game() {
+        this.setLocation(GAME_X_POSITION, GAME_Y_POSITION);
+        this.setSize(GAME_WIDTH, GAME_HEIGHT);
+        this.setTitle(GAME_TITLE);
+        this.addWindowListener(new HandleEvents());
+    }
+
+    
+    public void runGame() {
+        createSky();
+        this.setVisible(true);
+        while (true) {
+            createNewAsteroid();
+            move();
+            repaint();
+            pause(PAUSE_TIME);
+            interact();
+        }
+    }
+
+
+    private void createSky() {
+        this.setBackground(COLOR_BACKGROUND);
+    }
+    
+    
+    private void createNewAsteroid() {
+        // body to be written ... with some probability, will create a new Asteroid
+    }
+    
+    
+    private void move() {
+        // body to be written ... will move all objects in the game each frame
+    }
+    
+    
+    public void paint(Graphics g) {
+        // body to be written ... will "paint" all objects in the game each frame
+        g.drawImage(image, 100, 100, null);  
+    }
+    
+    
+    private void pause(int milliseconds) {
+        try {
+            Thread.sleep(milliseconds);
+        } catch (InterruptedException e) {
+        }
+    }
+    
+    
+    private void interact() {
+        // body to be written ... will cause interaction between Asteroids & Missiles
+    }
+
+/*
+ *   This class lies INSIDE the Game class.
+ *
+ *   Its purpose is to translate key presses
+ *   into game events:
+ *   - pressing comma moves the gun left.
+ *   - pressing period moves the gun right.
+ *   - pressing space fires a missile.
+ */
+    private class KeyPress extends KeyAdapter {
+        private final char COMMA = ',';
+        private final char PERIOD = '.';
+        private final char SPACE = ' ';
+
+        public void keyPressed (KeyEvent e) {
+            char key = e.getKeyChar();
+            switch (key) {
+            case COMMA:
+//                gun.moveLeft();
+                break;
+            case PERIOD:
+//                gun.moveRight();
+                break;
+            case SPACE:
+//                Missile m = gun.shoot();
+//                allMissiles.add(m);
+                break;
+            case 'q':
+                System.exit(0);
+                break;
+            }
+        }
+    }  // end of KeyPress class
+}  // end of Game class
+
+
+/*
+ *   This class lies OUTSIDE the Game class.
+ *
+ *   Its purpose is to shut down the game when
+ *   the user clicks the X button in the upper right
+ */
+class HandleEvents extends WindowAdapter {
+    public void windowClosing(WindowEvent we) {
+        System.exit(0);
+    }
+}  // end of HandleEvents class

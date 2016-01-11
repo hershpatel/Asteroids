@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.params=xpos\ ypos\ delX\ delY\ width\ scl\ rot\ c\ GMH
+comment0.target=Asteroid(double,\ double,\ double,\ double,\ int,\ double,\ double,\ java.awt.Color,\ int)
+comment1.params=
+comment1.target=void\ move()
+comment2.params=g
+comment2.target=void\ paint(java.awt.Graphics)
+numComments=3
